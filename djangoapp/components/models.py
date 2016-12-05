@@ -7,7 +7,6 @@ class Component(models.Model):
         'Brand',
         on_delete=models.CASCADE,
     )
-    # price = models.DecimalField(max_digits=6, decimal_places=2)
 
     class Meta:
         abstract = True
