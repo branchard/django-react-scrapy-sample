@@ -20,5 +20,5 @@ class Sale(models.Model):
     )
     component = models.ForeignKey(
         Component,
-     on_delete=models.CASCADE,
+        on_delete=models.CASCADE,
     )
