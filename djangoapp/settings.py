@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    # 'dynamic_scraper',  # trop complex à utiliser
     # 'djangoapp.components.apps.ComponentsConfig',
     # 'djangoapp.shops.apps.ShopsConfig',
     'djangoapp.components',
