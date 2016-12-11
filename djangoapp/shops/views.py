@@ -1,3 +1,11 @@
-from django.shortcuts import render
+from rest_framework import viewsets
+from djangoapp.shops.serializers import ShopsSerializer
+from djangoapp.shops.models import Shop
 
-# Create your views here.
+
+class ShopsViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Shop.objects.all()
+    serializer_class = ShopsSerializer
