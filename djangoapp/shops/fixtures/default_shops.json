@@ -1,0 +1,18 @@
+[
+  {
+    "model": "shops.shop",
+    "pk": 1,
+    "fields": {
+      "name": "LDLC",
+      "url": "www.ldlc.com"
+    }
+  },
+  {
+    "model": "shops.shop",
+    "pk": 2,
+    "fields": {
+      "name": "Amazon",
+      "url": "www.amazon.fr"
+    }
+  }
+]
