@@ -4,5 +4,5 @@ from djangoapp.components.models import Component, Brand, Processor, Motherboard
 
 class ComponentsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Processor
+        model = Component
         fields = ('name', 'brand')

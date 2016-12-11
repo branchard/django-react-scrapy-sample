@@ -7,5 +7,5 @@ class ComponentsViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """
-    queryset = Processor.objects.all()
+    queryset = Component.objects.all()
     serializer_class = ComponentsSerializer
