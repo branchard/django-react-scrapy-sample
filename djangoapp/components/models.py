@@ -8,8 +8,8 @@ class Component(models.Model):
         on_delete=models.CASCADE,
     )
 
-    class Meta:
-        abstract = True
+    # class Meta:
+    #     abstract = True
 
 
 class Brand(models.Model):

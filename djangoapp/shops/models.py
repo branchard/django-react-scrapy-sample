@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.contenttypes.fields import GenericForeignKey
+from djangoapp.components.models import Component
 
 
 class Shop(models.Model):
@@ -17,6 +19,6 @@ class Sale(models.Model):
         on_delete=models.CASCADE,
     )
     component = models.ForeignKey(
-        'Component',
-        on_delete=models.CASCADE,
+        Component,
+     on_delete=models.CASCADE,
     )
