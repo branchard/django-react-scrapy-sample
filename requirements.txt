@@ -10,6 +10,7 @@ djangorestframework==3.5.3
 idna==2.1
 incremental==16.10.1
 lxml==3.7.0
+nodeenv==1.0.0
 parsel==1.1.0
 pyasn1==0.1.9
 pyasn1-modules==0.0.8
