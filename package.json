@@ -1,0 +1,19 @@
+{
+  "name": "django-react-scrapy-sample",
+  "version": "0.0.1",
+  "description": "No description yet ;)",
+  "main": "djangoapp/static/js/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/branchard/django-react-scrapy-sample.git"
+  },
+  "author": "B. Branchard",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/branchard/django-react-scrapy-sample/issues"
+  },
+  "homepage": "https://github.com/branchard/django-react-scrapy-sample#readme"
+}
