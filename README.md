@@ -15,7 +15,7 @@ Start localy (for the first time)
 2. Go into the projet directory : `$ cd django-react-scrapy-sample/`
 3. Create a Python3 Virtualenv : `$ virtualenv -p python3 venv`
 4. Activate the Virtualenv : `$ source venv/bin/activate`
-5. Install all dependencies : `$ pip install -r requirements.txt`
+5. Install all dependencies (this step can be long) : `$ pip install -r requirements.txt`
 6. Init the nodeenv : `$ nodeenv -p`
 7. Create the database : `$ python manage.py migrate`
 8. Load default shops fixtures : `$ python manage.py loaddata default_shops`
