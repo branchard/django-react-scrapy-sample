@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/branchard/django-react-scrapy-sample/issues"
   },
-  "homepage": "https://github.com/branchard/django-react-scrapy-sample#readme"
+  "homepage": "https://github.com/branchard/django-react-scrapy-sample#readme",
+  "devDependencies": {
+    "babelify": "^7.3.0"
+  },
+  "dependencies": {}
 }

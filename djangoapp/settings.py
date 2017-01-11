@@ -25,7 +25,7 @@ SECRET_KEY = 'nav048@cpocf8jk-tul^wvob8v26##ddzreb)*dw+0*)28l7f-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'pipeline',
     'rest_framework',
     # 'dynamic_scraper',  # trop complex à utiliser
     # 'djangoapp.components.apps.ComponentsConfig',
@@ -60,7 +61,7 @@ ROOT_URLCONF = 'djangoapp.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['djangoapp/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -128,3 +129,61 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'djangoapp/dist/')
+
+# Django Pipeline (and browserify)
+STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'pipeline.finders.PipelineFinder',
+)
+
+PIPELINE = {
+    'PIPELINE_ENABLED': True,
+    'JAVASCRIPT': {
+        'stats': {
+            'source_filenames': (
+              'js/*.js',
+            ),
+            'output_filename': 'js/test.js',
+        }
+    }
+}
+
+
+
+# browserify-specific
+PIPELINE['COMPILERS'] = ('pipeline_browserify.compiler.BrowserifyCompiler',)
+# PIPELINE['BROWSERIFY_BINARY'] = 'node_modules/.bin browserify'
+PIPELINE['CSS_COMPRESSOR'] = 'pipeline.compressors.NoopCompressor'
+PIPELINE['JS_COMPRESSOR'] = 'pipeline.compressors.uglifyjs.UglifyJSCompressor'
+# PIPELINE['UGLIFYJS_BINARY'] = 'node_modules/.bin uglifyjs'
+if DEBUG:
+    PIPELINE['BROWSERIFY_ARGUMENTS'] = '-d'
+
+#
+# if DEBUG:
+#     PIPELINE_BROWSERIFY_ARGUMENTS = '-t babelify'
+#
+# PIPELINE_CSS = {
+#     'mysite_css': {
+#         'source_filenames': (
+#             'css/style.css',
+#         ),
+#         'output_filename': 'css/mysite_css.css',
+#     },
+# }
+#
+# PIPELINE_JS = {
+#     'mysite_js': {
+#         'source_filenames': (
+#             'js/bower_components/jquery/dist/jquery.min.js',
+#             'js/bower_components/react/JSXTransformer.js',
+#             'js/bower_components/react/react-with-addons.js',
+#             'js/app.browserify.js',
+#         ),
+#         'output_filename': 'js/mysite_js.js',
+#     }
+# }
