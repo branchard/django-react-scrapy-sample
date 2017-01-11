@@ -3,6 +3,12 @@ A student project for training web crawling and Test driven development.
 
 It made with Django and Scrapy libraries.
 
+System dependencies (not exhaustive)
+------------------------------------
+- python-virtualenv
+- python-pip
+- nodejs
+
 Start localy (for the first time)
 ---------------------------------
 1. Clone the project.
