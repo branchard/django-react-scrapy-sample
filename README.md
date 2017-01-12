@@ -17,7 +17,7 @@ Start localy (for the first time)
 4. Activate the Virtualenv : `$ source venv/bin/activate`
 5. Install all python dependencies (this step can be long) : `$ pip install -r requirements.txt`
 6. Init the nodeenv : `$ nodeenv -p`
-7. Install all node dependencies : `$ npm update`
+7. Install all node dependencies : `$ npm install`
 8. Create the database : `$ python manage.py migrate`
 9. Load default shops fixtures : `$ python manage.py loaddata default_shops`
 10. Create an admin : `$ python manage.py createsuperuser`
