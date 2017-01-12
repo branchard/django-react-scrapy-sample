@@ -4,8 +4,7 @@ constantly==15.1.0
 cryptography==1.6
 cssselect==1.0.0
 Django==1.10.4
-django-pipeline==1.6.9
-django-pipeline-browserify==0.5.0
+django-webpack-loader==0.4.1
 djangorestframework==3.5.3
 idna==2.1
 incremental==16.10.1

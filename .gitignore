@@ -138,3 +138,7 @@ jspm_packages
 
 # Yarn Integrity file
 .yarn-integrity
+
+# Custom
+webpack-stats.json
+djangoapp/assets/bundles/

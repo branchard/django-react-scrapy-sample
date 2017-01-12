@@ -31,13 +31,15 @@ ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 # Application definition
 
 INSTALLED_APPS = [
+    'djangoapp',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'pipeline',
+    # 'pipeline', # très mal documenté ou alors je comprend rien ...
+    'webpack_loader',
     'rest_framework',
     # 'dynamic_scraper',  # trop complex à utiliser
     # 'djangoapp.components.apps.ComponentsConfig',
@@ -128,62 +130,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'djangoapp/dist/')
+STATIC_URL = '/assets/'
 
-# Django Pipeline (and browserify)
-STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
-
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'pipeline.finders.PipelineFinder',
+STATICFILES_DIRS = (
+    #This lets Django's collectstatic store our bundles
+    os.path.join(BASE_DIR, 'djangoapp/assets'),
 )
 
-PIPELINE = {
-    'PIPELINE_ENABLED': True,
-    'JAVASCRIPT': {
-        'stats': {
-            'source_filenames': (
-              'js/*.js',
-            ),
-            'output_filename': 'js/test.js',
-        }
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'CACHE': not(DEBUG),
+        'BUNDLE_DIR_NAME': 'bundles/',
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
     }
 }
-
-
-
-# browserify-specific
-PIPELINE['COMPILERS'] = ('pipeline_browserify.compiler.BrowserifyCompiler',)
-# PIPELINE['BROWSERIFY_BINARY'] = 'node_modules/.bin browserify'
-PIPELINE['CSS_COMPRESSOR'] = 'pipeline.compressors.NoopCompressor'
-PIPELINE['JS_COMPRESSOR'] = 'pipeline.compressors.uglifyjs.UglifyJSCompressor'
-# PIPELINE['UGLIFYJS_BINARY'] = 'node_modules/.bin uglifyjs'
-if DEBUG:
-    PIPELINE['BROWSERIFY_ARGUMENTS'] = '-d'
-
-#
-# if DEBUG:
-#     PIPELINE_BROWSERIFY_ARGUMENTS = '-t babelify'
-#
-# PIPELINE_CSS = {
-#     'mysite_css': {
-#         'source_filenames': (
-#             'css/style.css',
-#         ),
-#         'output_filename': 'css/mysite_css.css',
-#     },
-# }
-#
-# PIPELINE_JS = {
-#     'mysite_js': {
-#         'source_filenames': (
-#             'js/bower_components/jquery/dist/jquery.min.js',
-#             'js/bower_components/react/JSXTransformer.js',
-#             'js/bower_components/react/react-with-addons.js',
-#             'js/app.browserify.js',
-#         ),
-#         'output_filename': 'js/mysite_js.js',
-#     }
-# }
