@@ -1,0 +1,144 @@
+.item-list {
+    padding-bottom: 100px;
+
+    .item{
+        margin-bottom: 20px;
+
+        .item-top {
+            padding: 0;
+            overflow: hidden;
+            height: 100px;
+            cursor: pointer;
+
+            .item-type {
+                padding: 9px 14px;
+                height: 100%;
+
+                .item-type-name {
+                    line-height: 82px;
+                    margin: 0;
+                    .glyphicon {
+                        margin-right: 7px;
+                        top: 2px;
+                        transition: .1s ease-in-out;
+                    }
+                }
+            }
+
+            .right-countainer {
+                height: 100%;
+                float: right;
+                .item-description {
+                    position: relative;
+                    height: 100%;
+                    padding: 9px 14px;
+                    float: left;
+                    &>span {
+                        display: block;
+                        text-align: right;
+                    }
+
+                    .item-label {
+                        font-weight: bold;
+                    }
+
+                    .item-price {
+                        position: absolute;
+                        bottom: 14px;
+                        right: 14px;
+                    }
+                }
+
+                .item-preview {
+                    position: relative;
+                    overflow: hidden;
+                    height: 100%;
+                    border-left: 1px solid #e1e1e8;
+                    padding: 0;
+                    float: left;
+                    width: 100px;
+
+                    &:before {
+                        content: '+';
+                        display: block;
+                        color: #d0d0d0;
+                        width: 50px;
+                        height: 50px;
+                        line-height: 40px;
+                        text-align: center;
+                        position: absolute;
+                        top: 25px;
+                        left: 25px;
+                        border-radius: 50px;
+                        border: 5px solid #d0d0d0;
+                        font-weight: bold;
+                        font-size: 50px;
+                    }
+
+                    img {
+                        position: absolute;
+                        width: 100%;
+                    }
+                }
+            }
+
+            &:hover {
+                border-color: @border-color - #090909;
+                background-color: @frame-bg-color - #090909;
+
+            }
+        }
+
+        .item-menu {
+            display: none;
+            overflow: auto;
+
+            min-height: 50px;
+            max-height: 300px;
+
+            border-top: none;
+            border-radius: 0 0 4px 4px;
+        }
+    }
+
+    .item-opened {
+        .item-top {
+            border-radius: 4px 4px 0 0;
+
+            .item-type {
+                .item-type-name {
+                    .glyphicon {
+                            transform: rotate(90deg);
+                    }
+                }
+            }
+        }
+
+        .item-menu {
+            display: block;
+        }
+    }
+}
+
+@total-height: 70px;
+.total {
+    position: fixed;
+    width: 100%;
+    height: @total-height;
+    bottom: @footer-height;
+    background: white;
+
+    border-top: solid 1px @border-color;
+
+    span {
+        line-height: @total-height;
+    }
+
+    .price-label {
+        font-weight: bold;
+    }
+
+    .price {
+        margin-left: 7px;
+    }
+}

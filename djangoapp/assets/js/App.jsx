@@ -1,11 +1,13 @@
 import React from 'react';
 
+import Page from "./components/Page";
+
 class App extends React.Component {
     render() {
         return (
-            <h1>
-                Hello, React from App !!!
-            </h1>
+            <div>
+                <Page />
+            </div>
         );
     }
 }
