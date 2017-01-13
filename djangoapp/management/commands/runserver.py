@@ -28,6 +28,6 @@ class Command(StaticfilesRunserverCommand):
             stderr=self.stderr)
         self.stdout.write("Webpack watch process: %r\n" % self.process_pid.pid)
 
-        print("done.")
+        print("Please wait assets bundling ...")
 
         return handler
