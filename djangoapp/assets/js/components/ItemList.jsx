@@ -3,6 +3,10 @@ import Item from './Item';
 
 const ITEM_TYPES = [
     {
+        displayedName: "Boitier",
+        apiName: "case"
+    },
+    {
         displayedName: "Processeur",
         apiName: "processor"
     },
@@ -16,7 +20,15 @@ const ITEM_TYPES = [
     },
     {
         displayedName: "Carte graphique",
-        apiName: "graphiquecard"
+        apiName: "graphique_card"
+    },
+    {
+        displayedName: "Disque Dur",
+        apiName: "storage"
+    },
+    {
+        displayedName: "Alimentation",
+        apiName: "power_supply"
     }
 ];
 
@@ -27,24 +39,22 @@ class ItemList extends React.Component {
         this.state = {
             openItemId: null
         };
-        this.handleItemOpening = this.handleItemOpening.bind(this);
+        this.handleItemOpeningToogle = this.handleItemOpeningToogle.bind(this);
     }
 
-    handleItemOpening(id) {
+    handleItemOpeningToogle(id, alreadyOpen) {
         this.setState({
-            openItemId: id
+            openItemId: alreadyOpen ? null : id
         });
     }
 
     render() {
         let itemsComponents = [];
-        let that = this;
-        console.log("rendering");
         ITEM_TYPES.forEach(function(item, id) {
             itemsComponents.push(
-                <Item key={id} id={id} itemObj={item} onOpening={that.handleItemOpening} open={id == that.state.openItemId} />
+                <Item key={id} id={id} itemObj={item} onOpeningToogle={this.handleItemOpeningToogle} open={id == this.state.openItemId} />
             );
-        });
+        }.bind(this));
 
 
         return (

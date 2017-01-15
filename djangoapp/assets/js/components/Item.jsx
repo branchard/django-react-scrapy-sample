@@ -1,14 +1,19 @@
 import React from 'react';
 
+const AJAX_RES = [
+
+];
+
 class ItemList extends React.Component {
     constructor(props) {
         super(props);
+        this.openingToogleHandler = this.openingToogleHandler.bind(this);
     }
 
-    open = (event) => {
+    openingToogleHandler(event) {
         event.preventDefault();
-        this.props.onOpening(this.props.id);
-    };
+        this.props.onOpeningToogle(this.props.id, this.props.open);
+    }
 
     render() {
         const open = this.props.open;
@@ -22,7 +27,7 @@ class ItemList extends React.Component {
         }
         return (
             <article className={"item" + (open ? " item-opened" : "")}>
-                <div className="frame item-top row" onClick={this.open}>
+                <div className="frame item-top row" onClick={this.openingToogleHandler}>
                     <div className="item-type col-sm-3">
                         <h3 className="item-type-name">
                             <span className="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>{this.props.itemObj.displayedName}</h3>
