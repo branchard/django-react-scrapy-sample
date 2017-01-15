@@ -3,20 +3,15 @@ import React from 'react';
 class ItemList extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            open: false
-        };
     }
 
     open = (event) => {
         event.preventDefault();
-        this.setState({
-            open: !this.state.open
-        });
+        this.props.onOpening(this.props.id);
     };
 
     render() {
-        const {open} = this.state;
+        const open = this.props.open;
         let selectMenu = null;
         if(open){
             selectMenu = (

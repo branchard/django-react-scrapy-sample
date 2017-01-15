@@ -24,18 +24,25 @@ class ItemList extends React.Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            openItemId: null
+        };
+        this.handleItemOpening = this.handleItemOpening.bind(this);
     }
 
-    handleItemChange = (event) => {
-        console.log("item changed");
-    };
+    handleItemOpening(id) {
+        this.setState({
+            openItemId: id
+        });
+    }
 
     render() {
         let itemsComponents = [];
+        let that = this;
+        console.log("rendering");
         ITEM_TYPES.forEach(function(item, id) {
-            console.log(item.displayedName);
             itemsComponents.push(
-                <Item key={id} itemObj={item} />
+                <Item key={id} id={id} itemObj={item} onOpening={that.handleItemOpening} open={id == that.state.openItemId} />
             );
         });
 
