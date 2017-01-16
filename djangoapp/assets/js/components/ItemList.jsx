@@ -1,5 +1,5 @@
 import React from 'react';
-import Item from './Item';
+import ItemContainer from './ItemContainer';
 
 const ITEM_TYPES = [
     {
@@ -52,7 +52,7 @@ class ItemList extends React.Component {
         let itemsComponents = [];
         ITEM_TYPES.forEach(function(item, id) {
             itemsComponents.push(
-                <Item key={id} id={id} itemObj={item} onOpeningToogle={this.handleItemOpeningToogle} open={id == this.state.openItemId} />
+                <ItemContainer key={id} id={id} itemObj={item} onOpeningToogle={this.handleItemOpeningToogle} open={id == this.state.openItemId} />
             );
         }.bind(this));
 

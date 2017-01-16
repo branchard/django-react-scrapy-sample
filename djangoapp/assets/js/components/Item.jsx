@@ -1,9 +1,5 @@
 import React from 'react';
 
-const AJAX_RES = [
-
-];
-
 class ItemList extends React.Component {
     constructor(props) {
         super(props);
