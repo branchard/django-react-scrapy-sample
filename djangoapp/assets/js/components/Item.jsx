@@ -26,9 +26,9 @@ class ItemList extends React.Component {
                     );
                 }.bind(this));
                 productsDiv = (
-                        <ul>
-                            {productsLis}
-                        </ul>
+                    <ul>
+                        {productsLis}
+                    </ul>
                 );
             }else{
                 productsDiv = (
