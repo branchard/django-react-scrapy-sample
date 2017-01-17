@@ -117,6 +117,13 @@ class ItemList extends React.Component {
         let currentSelectedItemDiv;
         if(this.state.currentSelectedItem || this.state.currentHoveredItem){
             let currentProduct = this.state.currentHoveredItem || this.state.currentSelectedItem;
+
+            let img = null;
+
+            if(currentProduct.img){
+                img = <img src="http://lorempicsum.com/simpsons/300/300/5"/>;
+            }
+
             currentSelectedItemDiv = (
                 <div className="right-countainer">
                     <div className="item-description">
@@ -126,8 +133,8 @@ class ItemList extends React.Component {
                             <span className="label label-danger">259.90 €</span>
                         </span>
                     </div>
-                    <div className="item-preview">
-                        <img src="http://lorempicsum.com/simpsons/300/300/5"/>
+                    <div className={"item-preview " + (img ? "" : "no-img")}>
+                        {img}
                     </div>
                 </div>
             );
