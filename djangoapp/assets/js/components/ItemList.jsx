@@ -8,7 +8,22 @@ const ITEM_TYPES = [
     },
     {
         displayedName: "Processeur",
-        apiName: "processor"
+        apiName: "processors",
+        collumns: [
+            {
+                displayedName: "Article",
+                apiName: "name"
+            },
+            {
+                displayedName: "Nombre de coeurs",
+                apiName: "cores"
+            },
+            {
+                displayedName: "Marque",
+                apiName: "brand"
+            }
+
+        ]
     },
     {
         displayedName: "Carte mère",

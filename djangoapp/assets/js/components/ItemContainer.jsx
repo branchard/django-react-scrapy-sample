@@ -15,7 +15,7 @@ class ItemContainer extends React.Component {
     componentDidMount() {
         let that = this;
 
-        fetch('/api/0.1/components/', {
+        fetch('/api/0.1/components/' + this.props.itemObj.apiName, {
         	method: 'get'
         }).then(function(response) {
             response.json().then(function(data){
@@ -24,7 +24,7 @@ class ItemContainer extends React.Component {
                     that.setState({
                         products: data.results
                     })
-                }, 2000);
+                }, 900);
             });
         }).catch(function(err) {
         	console.log(err);
@@ -33,7 +33,7 @@ class ItemContainer extends React.Component {
 
     render() {
         return (
-            <Item id={this.props.id} name={this.props.itemObj.displayedName} onOpeningToogle={this.props.onOpeningToogle} open={this.props.open} products={this.state.products} />
+            <Item id={this.props.id} name={this.props.itemObj.displayedName} collumns={this.props.itemObj.collumns} onOpeningToogle={this.props.onOpeningToogle} open={this.props.open} products={this.state.products} />
         );
     }
 }

@@ -2,15 +2,6 @@ import React from 'react';
 
 import Spinner from "./Spinner";
 
-const ITEMS_COLUMNS = {
-    "processor": {
-        rows: [
-            "Article",
-
-        ]
-    }
-}
-
 class ItemList extends React.Component {
     constructor(props) {
         super(props);
@@ -23,10 +14,45 @@ class ItemList extends React.Component {
         this.props.onOpeningToogle(this.props.id, this.props.open);
     }
 
-    renderProductsTable(products) {
-        return(
-            <table>
+    renderProductsTable() {
+        const that = this;
 
+        let theadCollumns = [];
+        this.props.collumns.forEach(function(collumn, key){
+            theadCollumns.push(
+                <th key={key} >
+                    {collumn.displayedName}
+                </th>
+            )
+        });
+
+        let productsRows = [];
+        this.props.products.forEach(function(row, key){
+            let productCollumns = [];
+            that.props.collumns.forEach(function(collumn, key){
+                productCollumns.push(
+                    <td key={key} >
+                        {row[collumn.apiName]}
+                    </td>
+                );
+            });
+            productsRows.push(
+                <tr>
+                    {productCollumns}
+                </tr>
+            );
+        });
+
+        return(
+            <table className="table" >
+                <thead>
+                    <tr>
+                        {theadCollumns}
+                    </tr>
+                </thead>
+                <tbody>
+                    {productsRows}
+                </tbody>
             </table>
         );
     }
@@ -37,17 +63,7 @@ class ItemList extends React.Component {
         if(open){
             let productsDiv = null;
             if(this.props.products){
-                let productsList = []
-                this.props.products.forEach(function(product, key){
-                    productsList.push(
-                        <li key={key} >{product.name}</li>
-                    );
-                }.bind(this));
-                productsDiv = (
-                    <ul>
-                        {productsList}
-                    </ul>
-                );
+                productsDiv = this.renderProductsTable();
             }else{
                 productsDiv = (
                     <Spinner />
