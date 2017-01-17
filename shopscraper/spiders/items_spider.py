@@ -1,5 +1,5 @@
 import scrapy
-from shopscraper.items import ShopscraperItem
+from shopscraper.items import ShopscraperItem, ProcessorItem
 
 class ShopscraperSpider(scrapy.Spider):
     name = "shopscraper"
@@ -14,9 +14,16 @@ class ShopscraperSpider(scrapy.Spider):
             yield scrapy.Request(url=url, callback=self.parse)
 
     def parse(self, response):
-        parsedItem = self.ldlcParse(response)
+        # define item type
+        itemType = response.xpath("//ul[contains(@class, 'cheminDeFer')]//li[contains(@class, 'last')]//span//text()").extract()[0]
+        if(itemType == "Processeur"):
+            itemType = "processor"
 
-        item = ShopscraperItem()
+
+        parsedItem = self.ldlcParse(response, itemType)
+
+        if(itemType == "processor"):
+            item = ProcessorItem()
 
         for key, value in parsedItem.items():
             item[key] = value
@@ -40,7 +47,7 @@ class ShopscraperSpider(scrapy.Spider):
         #     item.save()
 
 
-    def ldlcParse(self, response):
+    def ldlcParse(self, response, itemType):
         specsParent = response.xpath("//table[@id='productParametersList']")
         def getSpec(specName):
             return specsParent.xpath("//*[contains(text(),'{}')]/../..//td[2]//*[not(*)]//text()".format(specName))[0].extract()
@@ -48,5 +55,10 @@ class ShopscraperSpider(scrapy.Spider):
         component = dict()
         component["name"] = getSpec("Désignation")
         component["brand"] = getSpec("Marque")
+
+        if(itemType == "processor"):
+            component["frequency"] = float(getSpec("Fréquence CPU").replace("GHz", "").replace(" ", "").replace(",", "."))
+            component["cores"] = int(getSpec("Nombre de core"))
+            component["socket"] = getSpec("Support du processeur")
 
         return component

@@ -15,16 +15,16 @@ class ItemContainer extends React.Component {
     componentDidMount() {
         let that = this;
 
-        fetch('https://baconipsum.com/api/?type=meat-and-filler', {
+        fetch('/api/0.1/components/', {
         	method: 'get'
         }).then(function(response) {
             response.json().then(function(data){
                 //console.log(data);
                 setTimeout(function(){
                     that.setState({
-                        products: data
+                        products: data.results
                     })
-                }, 4000);
+                }, 2000);
             });
         }).catch(function(err) {
         	console.log(err);
@@ -33,7 +33,7 @@ class ItemContainer extends React.Component {
 
     render() {
         return (
-            <Item id={this.props.id} itemObj={this.props.itemObj} onOpeningToogle={this.props.onOpeningToogle} open={this.props.open} products={this.state.products} />
+            <Item id={this.props.id} name={this.props.itemObj.displayedName} onOpeningToogle={this.props.onOpeningToogle} open={this.props.open} products={this.state.products} />
         );
     }
 }

@@ -2,15 +2,33 @@ import React from 'react';
 
 import Spinner from "./Spinner";
 
+const ITEMS_COLUMNS = {
+    "processor": {
+        rows: [
+            "Article",
+
+        ]
+    }
+}
+
 class ItemList extends React.Component {
     constructor(props) {
         super(props);
         this.openingToogleHandler = this.openingToogleHandler.bind(this);
+        this.renderProductsTable = this.renderProductsTable.bind(this);
     }
 
     openingToogleHandler(event) {
         event.preventDefault();
         this.props.onOpeningToogle(this.props.id, this.props.open);
+    }
+
+    renderProductsTable(products) {
+        return(
+            <table>
+
+            </table>
+        );
     }
 
     render() {
@@ -19,15 +37,15 @@ class ItemList extends React.Component {
         if(open){
             let productsDiv = null;
             if(this.props.products){
-                let productsLis = []
+                let productsList = []
                 this.props.products.forEach(function(product, key){
-                    productsLis.push(
-                        <li key={key} >{product}</li>
+                    productsList.push(
+                        <li key={key} >{product.name}</li>
                     );
                 }.bind(this));
                 productsDiv = (
                     <ul>
-                        {productsLis}
+                        {productsList}
                     </ul>
                 );
             }else{
@@ -46,7 +64,7 @@ class ItemList extends React.Component {
                 <div className="frame item-top row" onClick={this.openingToogleHandler}>
                     <div className="item-type col-sm-3">
                         <h3 className="item-type-name">
-                            <span className="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>{this.props.itemObj.displayedName}</h3>
+                            <span className="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>{this.props.name}</h3>
                     </div>
                     <div className="right-countainer">
                         <div className="item-description">

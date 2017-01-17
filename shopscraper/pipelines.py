@@ -5,7 +5,7 @@
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 
-from djangoapp.components.models import Component, Brand
+from djangoapp.components.models import Component, Processor, Brand, Socket
 
 class ShopscraperPipeline(object):
     def process_item(self, item, spider):
@@ -15,6 +15,19 @@ class ShopscraperPipeline(object):
             brand = Brand.objects.create(name=item['brand'])
         else:
             brand = brand[0]
-        item['brand']=brand
+        item['brand'] = brand
+
+        print("#-#-#-#-#-#-#-#-#-#")
+
+        # PROCESSOR
+        if("socket" in item):
+            print("Processor --")
+            socket = Socket.objects.filter(name__iexact = item['socket'])  # __iexact -> Case-insensitive exact match
+            if(socket.count() <= 0): # if socket dont exists
+                socket = Socket.objects.create(name=item['socket'])
+            else:
+                socket = socket[0]
+            item['socket'] = socket
+
         item.save()
         return item
