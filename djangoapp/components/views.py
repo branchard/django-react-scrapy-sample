@@ -1,5 +1,5 @@
 from rest_framework import viewsets
-from djangoapp.components.serializers import ComponentsSerializer
+from djangoapp.components.serializers import ComponentsSerializer, ProcessorSerializer
 from djangoapp.components.models import Component, Brand, Processor, Motherboard, Socket
 
 
@@ -9,3 +9,10 @@ class ComponentsViewSet(viewsets.ModelViewSet):
     """
     queryset = Component.objects.all()
     serializer_class = ComponentsSerializer
+
+class ProcessorViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Processor.objects.all()
+    serializer_class = ProcessorSerializer

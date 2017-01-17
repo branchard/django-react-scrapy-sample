@@ -48,6 +48,9 @@ class Motherboard(Component):
 class Socket(models.Model):
     name = models.CharField(max_length=10)
 
+    def __str__(self):
+        return "{{id: {}, name: {}}}".format(self.id, self.name)
+
 
 class Ram(Component):
     capacity = models.IntegerField()  # Go par barrette, capacity * quantity = total memory
