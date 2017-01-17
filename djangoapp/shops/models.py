@@ -22,3 +22,12 @@ class Sale(models.Model):
         Component,
         on_delete=models.CASCADE,
     )
+
+class ItemToScrap(models.Model):
+    url = models.URLField()
+    itemId = models.BigIntegerField() # id de l'item, permet de savoir quelles items sont identiques
+    sale = models.OneToOneField(
+        'Sale',
+        on_delete=models.SET_NULL,
+        null=True
+    )
