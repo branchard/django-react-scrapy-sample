@@ -47,16 +47,16 @@ module.exports = {
             loader: 'url?limit=8192'
         }, {
             test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
-            loader: 'url-loader?limit=10000&mimetype=application/font-woff&publicPath=assets/bundles/'
+            loader: 'url-loader?limit=10000&mimetype=application/font-woff&publicPath=assets/'
         }, {
             test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-            loader: 'url-loader?limit=10000&mimetype=application/octet-stream&publicPath=assets/bundles/'
+            loader: 'url-loader?limit=10000&mimetype=application/octet-stream&publicPath=assets/'
         }, {
             test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
             loader: 'file'
         }, {
             test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-            loader: 'url-loader?limit=10000&mimetype=image/svg+xml&publicPath=assets/bundles/'
+            loader: 'url-loader?limit=10000&mimetype=image/svg+xml&publicPath=assets/'
         }],
     },
 

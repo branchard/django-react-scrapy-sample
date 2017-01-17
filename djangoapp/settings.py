@@ -135,13 +135,13 @@ STATIC_URL = '/assets/'
 
 STATICFILES_DIRS = (
     #This lets Django's collectstatic store our bundles
-    os.path.join(BASE_DIR, 'djangoapp/assets'),
+    os.path.join(BASE_DIR, 'djangoapp/assets/bundles'),
 )
 
 WEBPACK_LOADER = {
     'DEFAULT': {
         'CACHE': not(DEBUG),
-        'BUNDLE_DIR_NAME': 'bundles/',
+        'BUNDLE_DIR_NAME': '/',
         'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
     }
 }
