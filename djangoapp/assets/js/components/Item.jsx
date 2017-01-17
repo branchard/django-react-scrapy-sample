@@ -30,30 +30,43 @@ class ItemList extends React.Component {
         this.props.products.forEach(function(row, key){
             let productCollumns = [];
             that.props.collumns.forEach(function(collumn, key){
+                let _row;
+                let regexExec = /^(.*)\.(.*)$/.exec(collumn.apiName);
+                if(regexExec)
+                {
+                    console.log("if");
+                    console.log(regexExec[1]);
+                    _row = row[regexExec[1]][regexExec[2]];
+                }else{
+                    _row = row[collumn.apiName];
+                }
+
                 productCollumns.push(
                     <td key={key} >
-                        {row[collumn.apiName]}
+                        {_row}
                     </td>
                 );
             });
             productsRows.push(
-                <tr>
+                <tr key={key} >
                     {productCollumns}
                 </tr>
             );
         });
 
         return(
-            <table className="table" >
-                <thead>
-                    <tr>
-                        {theadCollumns}
-                    </tr>
-                </thead>
-                <tbody>
-                    {productsRows}
-                </tbody>
-            </table>
+            <div className="table-responsive">
+                <table className="table table-bordered" >
+                    <thead>
+                        <tr>
+                            {theadCollumns}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {productsRows}
+                    </tbody>
+                </table>
+            </div>
         );
     }
 

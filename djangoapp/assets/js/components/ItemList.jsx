@@ -19,8 +19,12 @@ const ITEM_TYPES = [
                 apiName: "cores"
             },
             {
+                displayedName: "Socket",
+                apiName: "socket.name"
+            },
+            {
                 displayedName: "Marque",
-                apiName: "brand"
+                apiName: "brand.name"
             }
 
         ]
