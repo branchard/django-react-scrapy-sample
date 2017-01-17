@@ -1,3 +1,5 @@
+[![Dependency Status](https://gemnasium.com/badges/github.com/branchard/django-react-scrapy-sample.svg)](https://gemnasium.com/github.com/branchard/django-react-scrapy-sample)
+
 # django-react-scrapy-sample
 A student project for training web crawling and Test driven development.
 
