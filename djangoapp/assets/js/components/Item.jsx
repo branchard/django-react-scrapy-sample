@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Spinner from "./Spinner";
+
 class ItemList extends React.Component {
     constructor(props) {
         super(props);
@@ -15,9 +17,27 @@ class ItemList extends React.Component {
         const open = this.props.open;
         let selectMenu = null;
         if(open){
+            let productsDiv = null;
+            if(this.props.products){
+                let productsLis = []
+                this.props.products.forEach(function(product, key){
+                    productsLis.push(
+                        <li key={key} >{product}</li>
+                    );
+                }.bind(this));
+                productsDiv = (
+                        <ul>
+                            {productsLis}
+                        </ul>
+                );
+            }else{
+                productsDiv = (
+                    <Spinner />
+                );
+            }
             selectMenu = (
                 <div className="frame row item-menu">
-                    <p>Ouvert !!!!</p>
+                    {productsDiv}
                 </div>
             )
         }

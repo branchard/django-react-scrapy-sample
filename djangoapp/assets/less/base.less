@@ -3,6 +3,7 @@
 @import "./components/Navbar";
 @import "./components/ItemList";
 @import "./components/Footer";
+@import "./components/Spinner";
 
 
 body {
@@ -30,4 +31,40 @@ body {
     border-radius: 4px;
     -webkit-box-shadow: none;
     box-shadow: none;
+}
+
+.glyphicon-refresh-animate {
+    font-size: 20px;
+    line-height: 20px;
+    -animation: spin .9s infinite linear;
+    -webkit-animation: spin2 .9s infinite linear;
+}
+
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
+
+
+.example-enter {
+  opacity: 0.01;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.example-leave {
+  opacity: 1;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
 }
