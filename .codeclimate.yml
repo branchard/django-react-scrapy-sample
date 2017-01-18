@@ -3,5 +3,5 @@ languages:
   Python: true
 
 exclude_paths:
-- "*/migrations/*"
+- "migrations/*"
 - "docs/*"
