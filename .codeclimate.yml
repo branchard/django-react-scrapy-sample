@@ -7,8 +7,8 @@ engines:
       - python
   pep8:
     enabled: true
-  eslint:
-    enabled: true
+  # eslint:
+  #   enabled: true
 ratings:
   paths:
   - "**.js"
