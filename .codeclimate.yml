@@ -5,6 +5,10 @@ engines:
       languages:
       - javascript
       - python
+  pep8:
+    enabled: true
+  eslint:
+    enabled: true
 ratings:
   paths:
   - "**.js"
