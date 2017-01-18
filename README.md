@@ -1,6 +1,6 @@
-[![Build Status](https://img.shields.io/travis/branchard/django-react-scrapy-sample/master.svg)](https://travis-ci.org/branchard/django-react-scrapy-sample)
-[![Dependency Status](https://img.shields.io/versioneye/d/user/projects/587eb137b194d40038f4727b.svg)](https://www.versioneye.com/user/projects/587eb137b194d40038f4727b)
-[![GitHub issues](https://img.shields.io/github/issues/branchard/django-react-scrapy-sample.svg)](https://github.com/branchard/django-react-scrapy-sample/issues)
+[![Build Status](https://travis-ci.org/branchard/django-react-scrapy-sample.svg?branch=master)](https://travis-ci.org/branchard/django-react-scrapy-sample)
+[![Dependency Status](https://www.versioneye.com/user/projects/587eb137b194d40038f4727b/badge.svg?style=flat)](https://www.versioneye.com/user/projects/587eb137b194d40038f4727b)
+[![Code Climate](https://codeclimate.com/github/branchard/django-react-scrapy-sample/badges/gpa.svg)](https://codeclimate.com/github/branchard/django-react-scrapy-sample)
 
 # django-react-scrapy-sample
 A student project for training web crawling and Test driven development.
