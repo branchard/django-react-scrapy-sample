@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/branchard/django-react-scrapy-sample.svg?branch=master)](https://travis-ci.org/branchard/django-react-scrapy-sample)
-[![Dependency Status](https://gemnasium.com/badges/github.com/branchard/django-react-scrapy-sample.svg)](https://gemnasium.com/github.com/branchard/django-react-scrapy-sample)
+[![Dependency Status](https://www.versioneye.com/user/projects/587eb137b194d40038f4727b/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/587eb137b194d40038f4727b)
 
 # django-react-scrapy-sample
 A student project for training web crawling and Test driven development.
