@@ -1,7 +1,21 @@
-languages:
-  JavaScript: true
-  Python: true
-
+engines:
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - javascript
+      - python
+  eslint:
+    enabled: true
+  fixme:
+    enabled: true
+  radon:
+    enabled: true
+ratings:
+  paths:
+  - "**.js"
+  - "**.jsx"
+  - "**.py"
 exclude_paths:
 - "migrations/*"
 - "docs/*"
