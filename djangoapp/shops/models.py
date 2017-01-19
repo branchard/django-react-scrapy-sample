@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib.contenttypes.fields import GenericForeignKey
 from djangoapp.components.models import Component
 
 
@@ -23,9 +22,13 @@ class Sale(models.Model):
         on_delete=models.CASCADE,
     )
 
+
 class ItemToScrap(models.Model):
-    url = models.URLField()
-    itemId = models.BigIntegerField() # id de l'item, permet de savoir quelles items sont identiques
+    url = models.URLField() # l'url de l'objet à scraper
+    itemId = models.BigIntegerField(
+        null=True,
+        blank=True
+    )  # id de l'item, permet de savoir quelles items sont identiques. C'est à l'administrateur lui même de s'organiser pour faire en sorte que les même objets est le même id
     sale = models.OneToOneField(
         'Sale',
         on_delete=models.SET_NULL,
