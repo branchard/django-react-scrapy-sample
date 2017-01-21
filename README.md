@@ -9,7 +9,7 @@ It made with Django and Scrapy libraries.
 
 System dependencies (not exhaustive)
 ------------------------------------
-- python3
+- python3.4/3.5 (3.6 is not supported because scrapy-djangoitem do not support this specific version)
 - python-virtualenv
 - python-pip
 - nodejs
