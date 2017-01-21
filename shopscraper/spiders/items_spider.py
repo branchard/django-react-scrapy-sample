@@ -52,6 +52,8 @@ class ShopscraperSpider(scrapy.Spider):
         component["name"] = getSpec("Désignation")
         component["brand"] = getSpec("Marque")
 
+        component["photo"] = response.xpath("//img[contains(@id, 'ImgProduct')]/@src")[0].extract()
+
         if(itemType == "processor"):
             component["frequency"] = float(getSpec("Fréquence CPU").replace("GHz", "").replace(" ", "").replace(",", "."))
             component["cores"] = int(getSpec("Nombre de core"))

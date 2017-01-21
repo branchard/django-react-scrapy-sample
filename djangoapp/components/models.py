@@ -3,6 +3,7 @@ from django.db import models
 
 class Component(models.Model):
     name = models.CharField(max_length=50, unique=True)
+    photoUrl = models.URLField(null=True, blank=True)
     brand = models.ForeignKey(
         'Brand',
         on_delete=models.CASCADE,
