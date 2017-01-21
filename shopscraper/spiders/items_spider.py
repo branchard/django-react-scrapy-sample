@@ -1,19 +1,31 @@
+from functools import wraps
+from scrapy.spider import Spider
+from scrapy.utils.python import get_func_args
 import scrapy
+from djangoapp.shops.models import ItemToScrap
 from shopscraper.items import ShopscraperItem, ProcessorItem
+
+def callback_args(f):
+    args = get_func_args(f)[2:]
+    @wraps(f)
+    def wrapper(spider, response):
+        return f(spider, response,
+            **{k:response.meta[k] for k in args if k in response.meta})
+    return wrapper
 
 class ShopscraperSpider(scrapy.Spider):
     name = "shopscraper"
     allowed_domains = ["www.ldlc.com"]
 
     def start_requests(self):
-        urls = [
-            "https://www.ldlc.com/fiche/PB00148533.html",
-            "http://www.ldlc.com/fiche/PB00148534.html",
-        ]
-        for url in urls:
-            yield scrapy.Request(url=url, callback=self.parse)
+        print("##### start_requests #####")
+        itemsToScrap = ItemToScrap.objects.all()
+        for item in itemsToScrap:
+            if(item.toScrap and item.sale == None):
+                yield scrapy.Request(url=item.url, callback=self.parse, meta={'itemDjangoModel': item})
 
-    def parse(self, response):
+    @callback_args
+    def parse(self, response, itemDjangoModel):
         # define item type
         itemType = response.xpath("//ul[contains(@class, 'cheminDeFer')]//li[contains(@class, 'last')]//span//text()").extract()[0]
         if(itemType == "Processeur"):
@@ -21,30 +33,10 @@ class ShopscraperSpider(scrapy.Spider):
 
 
         parsedItem = self.ldlcParse(response, itemType)
+        parsedItem['itemType'] = itemType
+        parsedItem['itemDjangoModel'] = itemDjangoModel
 
-        if(itemType == "processor"):
-            item = ProcessorItem()
-
-        for key, value in parsedItem.items():
-            item[key] = value
-
-        # print(item)
-        return item #return item to the pipeline
-
-        # for sel in response.xpath('//table[contains(@class, "wikitable")]//tr'):
-        #
-        #     # On vérifie qu'il ne s'agit pas du header du tableau
-        #     nom = sel.xpath('td[1]//text()').extract()
-        #     if not nom:
-        #         continue
-        #
-        #     item = WikibeerItem()
-        #     item['nom'] = "".join(nom)
-        #     item['type'] = "".join(sel.xpath('td[2]//text()').extract())
-        #     item['degre'] = "".join(sel.xpath('td[3]//text()').extract())
-        #     item['brasserie'] = "".join(sel.xpath('td[4]//text()').extract())
-        #
-        #     item.save()
+        return parsedItem #return item to the pipeline
 
 
     def ldlcParse(self, response, itemType):
@@ -53,6 +45,10 @@ class ShopscraperSpider(scrapy.Spider):
             return specsParent.xpath("//*[contains(text(),'{}')]/../..//td[2]//*[not(*)]//text()".format(specName))[0].extract()
 
         component = dict()
+
+        component["price"] = float(response.xpath("//meta[@itemprop='price']/@content")[0].extract().replace(',', '.'))
+        component["shopName"] = "ldlc"
+
         component["name"] = getSpec("Désignation")
         component["brand"] = getSpec("Marque")
 

@@ -22,8 +22,8 @@ class ShopAdmin(admin.ModelAdmin):
 
 @admin.register(ItemToScrap)
 class ItemToScrapAdmin(admin.ModelAdmin):
-    list_display = ('url', 'itemId')
-    fields = ('url', 'itemId')
+    list_display = ('url', 'itemId', 'toScrap')
+    fields = ('url', 'itemId', 'toScrap')
 
 
 admin.site.unregister(User)

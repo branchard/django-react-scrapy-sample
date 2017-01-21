@@ -1,16 +1,12 @@
 from django.db import models
-from scrapy_djangoitem import DjangoItem
 
 
 class Component(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, unique=True)
     brand = models.ForeignKey(
         'Brand',
         on_delete=models.CASCADE,
     )
-
-    # class Meta:
-    #     abstract = True
 
 
 class Brand(models.Model):
