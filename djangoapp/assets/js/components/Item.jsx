@@ -120,17 +120,17 @@ class ItemList extends React.Component {
 
             let img = null;
 
-            if(currentProduct.img){
-                img = <img src="http://lorempicsum.com/simpsons/300/300/5"/>;
+            if(currentProduct.photoUrl){
+                img = <img src={currentProduct.photoUrl}/>;
             }
-
+            //this.props.onPriceChanging(this.props.id, currentProduct.sale_set[0].price)
             currentSelectedItemDiv = (
                 <div className="right-countainer">
                     <div className="item-description">
                         <span className="item-label">{currentProduct.name}</span>
-                        <span className="item-descr">Processeur Socket 1151 - Quad Core - Cache 6 Mo - Skylake - Ventirad non inclus</span>
+                        <span className="item-descr">{currentProduct.sale_set[0].shop.name}</span>
                         <span className="item-price">
-                            <span className="label label-danger">259.90 €</span>
+                            <span className="label label-danger">{currentProduct.sale_set[0].price} €</span>
                         </span>
                     </div>
                     <div className={"item-preview " + (img ? "" : "no-img")}>

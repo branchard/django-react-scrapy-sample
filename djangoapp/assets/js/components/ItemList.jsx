@@ -56,9 +56,11 @@ class ItemList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            openItemId: null
+            openItemId: null,
+            prices: {}
         };
         this.handleItemOpeningToogle = this.handleItemOpeningToogle.bind(this);
+        this.handlePriceChanging = this.handlePriceChanging.bind(this);
     }
 
     handleItemOpeningToogle(id, alreadyOpen) {
@@ -67,11 +69,17 @@ class ItemList extends React.Component {
         });
     }
 
+    handlePriceChanging(id, price) {
+        this.setState({
+            prices: {id: price}
+        });
+    }
+
     render() {
         let itemsComponents = [];
         ITEM_TYPES.forEach(function(item, id) {
             itemsComponents.push(
-                <ItemContainer key={id} id={id} itemObj={item} onOpeningToogle={this.handleItemOpeningToogle} open={id == this.state.openItemId} />
+                <ItemContainer key={id} id={id} itemObj={item} onPriceChanging={this.handlePriceChanging} onOpeningToogle={this.handleItemOpeningToogle} open={id == this.state.openItemId} />
             );
         }.bind(this));
 

@@ -33,7 +33,7 @@ class ItemContainer extends React.Component {
 
     render() {
         return (
-            <Item id={this.props.id} name={this.props.itemObj.displayedName} collumns={this.props.itemObj.collumns} onOpeningToogle={this.props.onOpeningToogle} open={this.props.open} products={this.state.products} />
+            <Item id={this.props.id} name={this.props.itemObj.displayedName} collumns={this.props.itemObj.collumns} onPriceChanging={this.props.onPriceChanging} onOpeningToogle={this.props.onOpeningToogle} open={this.props.open} products={this.state.products} />
         );
     }
 }
