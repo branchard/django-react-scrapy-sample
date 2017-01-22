@@ -9,6 +9,7 @@ It made with Django and Scrapy libraries.
 
 System dependencies (not exhaustive)
 ------------------------------------
+- python3.4/3.5 (3.6 is not supported because scrapy-djangoitem do not support this specific version)
 - python-virtualenv
 - python-pip
 - nodejs
@@ -17,7 +18,7 @@ Start localy (for the first time)
 ---------------------------------
 1. Clone the project.
 2. Go into the projet directory : `$ cd django-react-scrapy-sample/`
-3. Create a Python3 Virtualenv : `$ virtualenv -p python3 venv`
+3. Create a Python3 Virtualenv : `$ virtualenv -p python3.5 venv`
 4. Activate the Virtualenv : `$ source venv/bin/activate`
 5. Install all python dependencies (this step can be long) : `$ pip install -r requirements.txt`
 6. Init the nodeenv : `$ nodeenv -p`
