@@ -28,7 +28,7 @@ class ShopscraperPipeline(object):
 
 
         component.name = item["name"]
-        component.photo = item["photo"]
+        component.photoUrl = item["photo"]
 
         brand = Brand.objects.filter(name__iexact = item['brand'])  # __iexact -> Case-insensitive exact match
         if(brand.count() <= 0): #  brand dont exists -> create new brand
