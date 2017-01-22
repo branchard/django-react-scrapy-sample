@@ -26,3 +26,16 @@ class ProcessorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Processor
         fields = ('name', 'photoUrl', 'brand', 'frequency', 'cores', 'socket', 'sale_set')
+
+class RamTypeSerializer(serializers.ModelSerializer):
+    pass
+
+
+class MotherboardSerializer(serializers.ModelSerializer):
+    brand = BrandSerializer(many=False, read_only=True)
+    socket = SocketSerializer(many=False, read_only=True)
+    sale_set = SaleSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Processor
+        fields = ('name', 'photoUrl', 'brand', 'ramSlots', 'maxRam', 'ramtype', 'ramfrequency', 'socket', 'pcitypes', 'formfactor', 'sale_set')
