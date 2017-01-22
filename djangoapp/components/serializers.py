@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from djangoapp.components.models import Component, Brand, Processor, Motherboard, Socket
+from djangoapp.shops.serializers import SaleSerializer
 
 
 class ComponentsSerializer(serializers.ModelSerializer):
@@ -20,7 +21,8 @@ class SocketSerializer(serializers.ModelSerializer):
 class ProcessorSerializer(serializers.ModelSerializer):
     brand = BrandSerializer(many=False, read_only=True)
     socket = SocketSerializer(many=False, read_only=True)
+    sale_set = SaleSerializer(many=True, read_only=True)
 
     class Meta:
         model = Processor
-        fields = ('name', 'brand', 'frequency', 'cores', 'socket')
+        fields = ('name', 'photoUrl', 'brand', 'frequency', 'cores', 'socket', 'sale_set')
