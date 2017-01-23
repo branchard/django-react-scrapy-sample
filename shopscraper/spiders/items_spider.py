@@ -30,6 +30,12 @@ class ShopscraperSpider(scrapy.Spider):
         itemType = response.xpath("//ul[contains(@class, 'cheminDeFer')]//li[contains(@class, 'last')]//span//text()").extract()[0]
         if(itemType == "Processeur"):
             itemType = "processor"
+        elif(itemType == "Carte mère"):
+            itemType = "motherboard"
+        elif(itemType == "Mémoire PC"):
+            itemType = "ram"
+        elif(itemType == "Boîtier PC"):
+            itemType = "case"
 
 
         parsedItem = self.ldlcParse(response, itemType)
@@ -54,11 +60,33 @@ class ShopscraperSpider(scrapy.Spider):
 
         component["photo"] = response.xpath("//img[contains(@id, 'ImgProduct')]/@src")[0].extract()
 
-        print("###### Photo : " + component["photo"])
-
         if(itemType == "processor"):
             component["frequency"] = float(getSpec("Fréquence CPU").replace("GHz", "").replace(" ", "").replace(",", "."))
             component["cores"] = int(getSpec("Nombre de core"))
             component["socket"] = getSpec("Support du processeur")
+
+        elif(itemType == "motherboard"):
+            component["socket"] = getSpec("Support du processeur")
+            component["ramslots"] = int(getSpec("Format de mémoire")[0])
+            component["maxram"] = int(getSpec("Capacité maximale de RAM").replace(" Go", ""))
+            component["ramtype"] = getSpec("Type de mémoire")
+            component["ramfrequency"] = [int("1333 MHz".replace(" MHz", ""))] # TODO
+            component["pcitypes"] = ["PCI Express 3.0 16x"] # TODO
+            component["formfactor"] = "ATX" # TODO
+
+        elif(itemType == "ram"):
+            component["capacity"] = int(getSpec("Capacité par barrette").replace(" Go", ""))
+            component["quantity"] = int(getSpec("Nombre de barrettes"))
+            component["ramtype"] = getSpec("Type de mémoire")
+            component["frequency"] = int("1333 MHz".replace(" MHz", "")) # TODO
+
+        elif(itemType == "case"):
+            component["weight"] = float(getSpec("Poids").replace(" kg", "").replace(",", "."))
+            component["width"] = int(getSpec("Largeur").replace(" mm", ""))
+            component["height"] = int(getSpec("Hauteur").replace(" mm", ""))
+            component["depth"] = int(getSpec("Profondeur").replace(" mm", ""))
+            component["motherboardformfactor"] = ["ATX"] # TODO
+            component["powersupplyformfactor"] = "ATX" # TODO
+
 
         return component

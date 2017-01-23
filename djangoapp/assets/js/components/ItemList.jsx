@@ -4,7 +4,26 @@ import ItemContainer from './ItemContainer';
 const ITEM_TYPES = [
     {
         displayedName: "Boitier",
-        apiName: "case"
+        apiName: "cases",
+        collumns: [
+            {
+                displayedName: "Article",
+                apiName: "name"
+            },
+            {
+                displayedName: "Poids (Kg)",
+                apiName: "weight"
+            },
+            {
+                displayedName: "Type d'alimentation",
+                apiName: "powerSupplyFormFactor.name"
+            },
+            {
+                displayedName: "Marque",
+                apiName: "brand.name"
+            }
+
+        ]
     },
     {
         displayedName: "Processeur",
@@ -31,11 +50,45 @@ const ITEM_TYPES = [
     },
     {
         displayedName: "Carte mère",
-        apiName: "motherboard"
+        apiName: "motherboards",
+        collumns: [
+            {
+                displayedName: "Article",
+                apiName: "name"
+            },
+            {
+                displayedName: "Socket",
+                apiName: "socket.name"
+            },
+            {
+                displayedName: "Marque",
+                apiName: "brand.name"
+            }
+
+        ]
     },
     {
         displayedName: "Mémoire",
-        apiName: "ram"
+        apiName: "rams",
+        collumns: [
+            {
+                displayedName: "Article",
+                apiName: "name"
+            },
+            {
+                displayedName: "Type",
+                apiName: "ramtype.typeName"
+            },
+            {
+                displayedName: "Capacité (Go)",
+                apiName: "capacity"
+            },
+            {
+                displayedName: "Marque",
+                apiName: "brand.name"
+            }
+
+        ]
     },
     {
         displayedName: "Carte graphique",

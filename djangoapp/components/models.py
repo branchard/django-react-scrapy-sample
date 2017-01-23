@@ -24,7 +24,7 @@ class Processor(Component):
 
 
 class Motherboard(Component):
-    ramSlots = models.IntegerField()
+    ramSlots = models.IntegerField()  # number of slots
     maxRam = models.IntegerField()  # Go
     ramtype = models.ForeignKey(
         'RamType',
