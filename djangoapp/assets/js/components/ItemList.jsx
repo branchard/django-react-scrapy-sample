@@ -167,7 +167,7 @@ class ItemList extends React.Component {
         super(props);
         this.state = {
             openItemId: null,
-            prices: {}
+            prices: []
         };
         this.handleItemOpeningToogle = this.handleItemOpeningToogle.bind(this);
         this.handlePriceChanging = this.handlePriceChanging.bind(this);
@@ -180,8 +180,23 @@ class ItemList extends React.Component {
     }
 
     handlePriceChanging(id, price) {
+        let newStatePrices = [];
+        let pushed = false;
+        this.state.prices.forEach(function(data){
+            if(data.id == id){
+                pushed = true
+                newStatePrices.push({id: id, price: parseFloat(price)})
+            } else {
+                newStatePrices.push(data)
+            }
+        });
+
+        if(!pushed) {
+            newStatePrices.push({id: id, price: parseFloat(price)})
+        }
+
         this.setState({
-            prices: {id: price}
+            prices: newStatePrices
         });
     }
 
@@ -193,6 +208,10 @@ class ItemList extends React.Component {
             );
         }.bind(this));
 
+        let totalPrice = 0;
+        this.state.prices.forEach(function(data){
+            totalPrice = totalPrice + data.price;
+        });
 
         return (
             <div>
@@ -205,7 +224,7 @@ class ItemList extends React.Component {
                 </div>
                 <footer className="total">
                     <div className="container-fluid">
-                        <span className="price-label">Prix total:</span><span className="price label label-danger">600.00 €</span>
+                        <span className="price-label">Prix total:</span><span className="price label label-danger">{totalPrice.toFixed(2)} €</span>
                     </div>
                 </footer>
             </div>

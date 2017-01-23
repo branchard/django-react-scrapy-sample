@@ -19,6 +19,7 @@ class ItemList extends React.Component {
     }
 
     onItemClick(product){
+        this.props.onPriceChanging(this.props.id, product.sale_set[0].price)
         this.setState({
             currentSelectedItem: product
         });
