@@ -25,6 +25,8 @@ Start localy (for the first time)
 7. Install all node dependencies : `$ npm install`
 8. Create the database : `$ python manage.py migrate`
 9. Load default shops fixtures : `$ python manage.py loaddata default_shops`
-10. Create an admin : `$ python manage.py createsuperuser`
-11. Run a local server : `$ python manage.py runserver`
-12. Open [127.0.0.1:8000](http://127.0.0.1:8000/) in your favorite browser.
+10. Load sample items : `$ python manage.py loaddata sample_items`
+11. Create an admin : `$ python manage.py createsuperuser`
+12. Scrap sample items : `scrapy crawl shopscraper`
+13. Run a local server : `$ python manage.py runserver`
+14. Open [127.0.0.1:8000](http://127.0.0.1:8000/) in your favorite browser.

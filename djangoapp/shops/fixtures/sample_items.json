@@ -1,0 +1,122 @@
+[
+  {
+    "model": "shops.ItemToScrap",
+    "pk": 1,
+    "fields": {
+      "url": "http://www.ldlc.com/fiche/PB00131135.html",
+      "toScrap": "True"
+    }
+  },
+  {
+    "model": "shops.ItemToScrap",
+    "pk": 2,
+    "fields": {
+      "url": "http://www.ldlc.com/fiche/PB00127331.html",
+      "toScrap": "True"
+    }
+  },
+  {
+    "model": "shops.ItemToScrap",
+    "pk": 3,
+    "fields": {
+      "url": "http://www.ldlc.com/fiche/PB00221492.html",
+      "toScrap": "True"
+    }
+  },
+  {
+    "model": "shops.ItemToScrap",
+    "pk": 4,
+    "fields": {
+      "url": "http://www.ldlc.com/fiche/PB00137881.html",
+      "toScrap": "True"
+    }
+  },
+  {
+    "model": "shops.ItemToScrap",
+    "pk": 5,
+    "fields": {
+      "url": "http://www.ldlc.com/fiche/PB00221751.html",
+      "toScrap": "True"
+    }
+  },
+  {
+    "model": "shops.ItemToScrap",
+    "pk": 6,
+    "fields": {
+      "url": "http://www.ldlc.com/fiche/PB00193652.html",
+      "toScrap": "True"
+    }
+  },
+  {
+    "model": "shops.ItemToScrap",
+    "pk": 7,
+    "fields": {
+      "url": "http://www.ldlc.com/fiche/PB00203562.html",
+      "toScrap": "True"
+    }
+  },
+  {
+    "model": "shops.ItemToScrap",
+    "pk": 8,
+    "fields": {
+      "url": "http://www.ldlc.com/fiche/PB00127137.html",
+      "toScrap": "True"
+    }
+  },
+  {
+    "model": "shops.ItemToScrap",
+    "pk": 9,
+    "fields": {
+      "url": "http://www.ldlc.com/fiche/PB00201445.html",
+      "toScrap": "True"
+    }
+  },
+  {
+    "model": "shops.ItemToScrap",
+    "pk": 10,
+    "fields": {
+      "url": "http://www.ldlc.com/fiche/PB00212522.html",
+      "toScrap": "True"
+    }
+  },
+  {
+    "model": "shops.ItemToScrap",
+    "pk": 11,
+    "fields": {
+      "url": "http://www.ldlc.com/fiche/PB00188788.html",
+      "toScrap": "True"
+    }
+  },
+  {
+    "model": "shops.ItemToScrap",
+    "pk": 12,
+    "fields": {
+      "url": "http://www.ldlc.com/fiche/PB00206895.html",
+      "toScrap": "True"
+    }
+  },
+  {
+    "model": "shops.ItemToScrap",
+    "pk": 13,
+    "fields": {
+      "url": "http://www.ldlc.com/fiche/PB00212819.html",
+      "toScrap": "True"
+    }
+  },
+  {
+    "model": "shops.ItemToScrap",
+    "pk": 14,
+    "fields": {
+      "url": "http://www.ldlc.com/fiche/PB00171552.html",
+      "toScrap": "True"
+    }
+  },
+  {
+    "model": "shops.ItemToScrap",
+    "pk": 15,
+    "fields": {
+      "url": "http://www.ldlc.com/fiche/PB00154342.html",
+      "toScrap": "True"
+    }
+  }
+]
