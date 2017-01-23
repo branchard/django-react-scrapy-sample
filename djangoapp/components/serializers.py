@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from djangoapp.components.models import Component, Brand, Processor, Case, Motherboard, Socket, PowerSupplyFormFactor, Ram, RamFrequency, RamType, PciType, MotherBoardFormFactor
+from djangoapp.components.models import Component, Brand, Processor, GraphicCard, Case, Motherboard, HardDriveType, Socket, PowerSupplyFormFactor, Ram, RamFrequency, RamType, PciType, MotherBoardFormFactor, HardDrive, PowerSupply
 from djangoapp.shops.serializers import SaleSerializer
 
 
@@ -101,3 +101,39 @@ class CaseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Case
         fields = ('name', 'photoUrl', 'brand', 'weight', 'width', 'height', 'depth', 'powerSupplyFormFactor', 'sale_set')
+
+class GraphicCardSerializer(serializers.ModelSerializer):
+    brand = BrandSerializer(many=False, read_only=True)
+    sale_set = SaleSerializer(many=True, read_only=True)
+
+    pcitype = PciTypeSerializer(many=False, read_only=True)
+
+    class Meta:
+        model = GraphicCard
+        fields = ('name', 'photoUrl', 'brand', 'memory', 'pcitype', 'sale_set')
+
+class HardDriveTypeSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = HardDriveType
+        fields = ('id', 'name')
+
+class HardDriveSerializer(serializers.ModelSerializer):
+    brand = BrandSerializer(many=False, read_only=True)
+    sale_set = SaleSerializer(many=True, read_only=True)
+
+    hardDriveType = HardDriveTypeSerializer(many=False, read_only=True)
+
+    class Meta:
+        model = HardDrive
+        fields = ('name', 'photoUrl', 'brand', 'capacity', 'hardDriveType', 'sale_set')
+
+class PowerSupplySerializer(serializers.ModelSerializer):
+    brand = BrandSerializer(many=False, read_only=True)
+    sale_set = SaleSerializer(many=True, read_only=True)
+
+    factorForm = PowerSupplyFormFactorSerializer(many=False, read_only=True)
+
+    class Meta:
+        model = PowerSupply
+        fields = ('name', 'photoUrl', 'brand', 'watts', 'modular', 'factorForm', 'sale_set')

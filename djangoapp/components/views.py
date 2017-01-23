@@ -1,6 +1,6 @@
 from rest_framework import viewsets
-from djangoapp.components.serializers import ComponentsSerializer, ProcessorSerializer, CaseSerializer, MotherboardSerializer, RamSerializer
-from djangoapp.components.models import Component, Brand, Processor, Motherboard, Socket, Ram, Case
+from djangoapp.components.serializers import ComponentsSerializer, ProcessorSerializer, CaseSerializer, MotherboardSerializer, RamSerializer, GraphicCardSerializer, HardDriveSerializer, PowerSupplySerializer
+from djangoapp.components.models import Component, Brand, Processor, Motherboard, Socket, Ram, Case, GraphicCard, HardDrive, PowerSupply
 
 
 class ComponentsViewSet(viewsets.ModelViewSet):
@@ -28,3 +28,15 @@ class RamViewSet(viewsets.ModelViewSet):
 class CaseViewSet(viewsets.ModelViewSet):
     queryset = Case.objects.all()
     serializer_class = CaseSerializer
+
+class GraphicCardViewSet(viewsets.ModelViewSet):
+    queryset = GraphicCard.objects.all()
+    serializer_class = GraphicCardSerializer
+
+class HardDriveViewSet(viewsets.ModelViewSet):
+    queryset = HardDrive.objects.all()
+    serializer_class = HardDriveSerializer
+
+class PowerSupplyViewSet(viewsets.ModelViewSet):
+    queryset = PowerSupply.objects.all()
+    serializer_class = PowerSupplySerializer

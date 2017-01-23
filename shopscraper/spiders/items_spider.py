@@ -36,6 +36,15 @@ class ShopscraperSpider(scrapy.Spider):
             itemType = "ram"
         elif(itemType == "Boîtier PC"):
             itemType = "case"
+        elif(itemType == "Carte graphique"):
+            itemType = "graphiccard"
+        elif(itemType == "Disque dur interne"):
+            itemType = "harddrive"
+        elif(itemType == "Alimentation PC"):
+            itemType = "powersupply"
+        else:
+            print("Item not recognized")
+            return
 
 
         parsedItem = self.ldlcParse(response, itemType)
@@ -48,7 +57,7 @@ class ShopscraperSpider(scrapy.Spider):
     def ldlcParse(self, response, itemType):
         specsParent = response.xpath("//table[@id='productParametersList']")
         def getSpec(specName):
-            return specsParent.xpath("//*[contains(text(),'{}')]/../..//td[2]//*[not(*)]//text()".format(specName))[0].extract()
+            return specsParent.xpath("//td//*[contains(text(),'{}')]/../..//td[2]//*[not(*)]//text()".format(specName))[0].extract()
 
         component = dict()
 
@@ -87,6 +96,25 @@ class ShopscraperSpider(scrapy.Spider):
             component["depth"] = int(getSpec("Profondeur").replace(" mm", ""))
             component["motherboardformfactor"] = ["ATX"] # TODO
             component["powersupplyformfactor"] = "ATX" # TODO
+
+        elif(itemType == "graphiccard"):
+            component["memory"] = int(getSpec("Taille mémoire vidéo").replace(" Mo", ""))
+            component["pcitype"] = "PCI Express 3.0 16x"
+
+        elif(itemType == "harddrive"):
+            capacity = getSpec("Capacité")
+            if("To" in capacity):
+                capacity = int(capacity.replace(" To", "")) * 1000
+            else:
+                capacity = int(capacity.replace(" Go", ""))
+            component["capacity"] = capacity
+            component["harddrivetype"] = getSpec("Type de Disque")
+
+        elif(itemType == "powersupply"):
+            component["watts"] = int(getSpec("Puissance").replace(" W", ""))
+            component["modular"] = getSpec("Modulaire") == "Oui"
+            component["factorForm"] = "ATX"  # TODO
+
 
 
         return component

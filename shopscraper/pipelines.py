@@ -5,7 +5,7 @@
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 
-from djangoapp.components.models import Component, Processor, Brand, Socket, PowerSupplyFormFactor, Motherboard, Case, Ram, RamType, RamFrequency, PciType, MotherBoardFormFactor
+from djangoapp.components.models import Component, Processor, Brand, Socket, HardDrive, HardDriveType, PowerSupply, GraphicCard, PowerSupplyFormFactor, Motherboard, Case, Ram, RamType, RamFrequency, PciType, MotherBoardFormFactor
 from djangoapp.shops.models import Sale, Shop
 
 class ShopscraperPipeline(object):
@@ -102,6 +102,43 @@ class ShopscraperPipeline(object):
             else:
                 formfactor = formfactor[0]
             component.powerSupplyFormFactor = formfactor
+
+        elif(item['itemType'] == "graphiccard"):
+            component = GraphicCard()
+
+            component.memory = item["memory"]
+
+            pcitype = PciType.objects.filter(name__iexact = item['pcitype'])  # __iexact -> Case-insensitive exact match
+            if(pcitype.count() <= 0):
+                pcitype = PciType.objects.create(name = item['pcitype'])
+            else:
+                pcitype = pcitype[0]
+            component.pcitype = pcitype
+
+        elif(item['itemType'] == "harddrive"):
+            component = HardDrive()
+
+            component.capacity = item["capacity"]
+
+            hardDriveType = HardDriveType.objects.filter(name__iexact = item['harddrivetype'])  # __iexact -> Case-insensitive exact match
+            if(hardDriveType.count() <= 0):
+                hardDriveType = HardDriveType.objects.create(name = item['harddrivetype'])
+            else:
+                hardDriveType = hardDriveType[0]
+            component.hardDriveType = hardDriveType
+
+        elif(item['itemType'] == "powersupply"):
+            component = PowerSupply()
+
+            component.watts = item["watts"]
+            component.modular = item["modular"]
+
+            formfactor = PowerSupplyFormFactor.objects.filter(name__iexact = item['factorForm'])  # __iexact -> Case-insensitive exact match
+            if(formfactor.count() <= 0):
+                formfactor = PowerSupplyFormFactor.objects.create(name=item['factorForm'])
+            else:
+                formfactor = formfactor[0]
+            component.factorForm = formfactor
 
 
         component.name = item["name"]

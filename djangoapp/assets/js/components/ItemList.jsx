@@ -92,15 +92,72 @@ const ITEM_TYPES = [
     },
     {
         displayedName: "Carte graphique",
-        apiName: "graphique_card"
+        apiName: "graphiccards",
+        collumns: [
+            {
+                displayedName: "Article",
+                apiName: "name"
+            },
+            {
+                displayedName: "Memoire (Mo)",
+                apiName: "memory"
+            },
+            {
+                displayedName: "Type",
+                apiName: "pcitype.name"
+            },
+            {
+                displayedName: "Marque",
+                apiName: "brand.name"
+            }
+
+        ]
     },
     {
         displayedName: "Disque Dur",
-        apiName: "storage"
+        apiName: "harddrives",
+        collumns: [
+            {
+                displayedName: "Article",
+                apiName: "name"
+            },
+            {
+                displayedName: "Capacité (Go)",
+                apiName: "capacity"
+            },
+            {
+                displayedName: "Type",
+                apiName: "hardDriveType.name"
+            },
+            {
+                displayedName: "Marque",
+                apiName: "brand.name"
+            }
+
+        ]
     },
     {
         displayedName: "Alimentation",
-        apiName: "power_supply"
+        apiName: "powersupplies",
+        collumns: [
+            {
+                displayedName: "Article",
+                apiName: "name"
+            },
+            {
+                displayedName: "Puissance",
+                apiName: "watts"
+            },
+            {
+                displayedName: "Format",
+                apiName: "factorForm.name"
+            },
+            {
+                displayedName: "Marque",
+                apiName: "brand.name"
+            }
+
+        ]
     }
 ];
 

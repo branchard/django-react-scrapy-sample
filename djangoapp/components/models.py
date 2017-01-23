@@ -71,7 +71,7 @@ class RamType(models.Model):
 
 
 class GraphicCard(Component):
-    memory = models.IntegerField()  # Go
+    memory = models.IntegerField()  # Mo
     pcitype = models.ForeignKey(
         'PciType',
         on_delete=models.CASCADE,

@@ -20,11 +20,9 @@ class ItemContainer extends React.Component {
         }).then(function(response) {
             response.json().then(function(data){
                 //console.log(data);
-                setTimeout(function(){
-                    that.setState({
-                        products: data.results
-                    })
-                }, 900);
+                that.setState({
+                    products: data.results
+                })
             });
         }).catch(function(err) {
         	console.log(err);
